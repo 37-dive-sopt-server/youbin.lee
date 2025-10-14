@@ -64,8 +64,7 @@ public class Main {
                     List<Member> allMembers = memberController.getAllMembers();
                     if (allMembers.isEmpty()) {
                         System.out.println("ℹ️ 등록된 회원이 없습니다.");
-                    }
-                    else {
+                    } else {
                         System.out.println("--- 📋 전체 회원 목록 📋 ---");
                         for (Member member : allMembers) {
                             System.out.println("👤 ID=" + member.getId() + ", 이름=" + member.getName());
