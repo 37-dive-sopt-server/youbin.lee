@@ -14,6 +14,7 @@ public class MemberServiceImpl implements MemberService {
 
     private static long sequence = 1L;
 
+    @Override
     public Long join(String name, LocalDate birthDate, String email, Gender gender) {
         validateEmail(email);
 
@@ -28,11 +29,18 @@ public class MemberServiceImpl implements MemberService {
         }
     }
 
+    @Override
     public Optional<Member> findOne(Long memberId) {
         return memberRepository.findById(memberId);
     }
 
+    @Override
     public List<Member> findAllMembers() {
         return memberRepository.findAll();
+    }
+
+    @Override
+    public void deleteId(Long memberId) {
+        memberRepository.deleteById(memberId);
     }
 }
