@@ -1,11 +1,14 @@
 package org.sopt;
 
 import org.sopt.controller.MemberController;
+import org.sopt.domain.Gender;
 import org.sopt.domain.Member;
 import org.sopt.repository.MemoryMemberRepository;
 import org.sopt.service.MemberService;
 import org.sopt.service.MemberServiceImpl;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -39,7 +42,19 @@ public class Main {
                         System.out.println("⚠️ 이름을 입력해주세요.");
                         continue;
                     }
-                    Long createdId = memberController.createMember(name);
+
+                    System.out.println("등록할 회원 생년월일을 입력해주세요(YYYY-MM-DD): ");
+                    LocalDate birthDate = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ISO_LOCAL_DATE);
+
+                    System.out.println("등록할 회원 이메일을 입력해주세요: ");
+                    String email = scanner.nextLine();
+
+                    System.out.println("등록할 회원 성별을 입력해주세요(남/여): ");
+                    String genderInput = scanner.nextLine();
+                    Gender gender = "남".equals(genderInput) ? Gender.MALE : Gender.FEMALE;
+
+                    Long createdId = memberController.createMember(name, birthDate, email, gender);
+
                     if (createdId != null) {
                         System.out.println("✅ 회원 등록 완료 (ID: " + createdId + ")");
                     } else {
