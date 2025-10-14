@@ -28,7 +28,8 @@ public class Main {
             System.out.println("1️⃣. 회원 등록 ➕");
             System.out.println("2️⃣. ID로 회원 조회 🔍");
             System.out.println("3️⃣. 전체 회원 조회 📋");
-            System.out.println("4️⃣. 종료 🚪");
+            System.out.println("4️⃣. 회원 삭제 🗑️");
+            System.out.println("5️⃣. 종료 🚪");
             System.out.println("---------------------------------");
             System.out.print("메뉴를 선택하세요: ");
 
@@ -43,13 +44,13 @@ public class Main {
                         continue;
                     }
 
-                    System.out.println("등록할 회원 생년월일을 입력해주세요(YYYY-MM-DD): ");
+                    System.out.print("등록할 회원 생년월일을 입력해주세요(YYYY-MM-DD): ");
                     LocalDate birthDate = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ISO_LOCAL_DATE);
 
-                    System.out.println("등록할 회원 이메일을 입력해주세요: ");
+                    System.out.print("등록할 회원 이메일을 입력해주세요: ");
                     String email = scanner.nextLine();
 
-                    System.out.println("등록할 회원 성별을 입력해주세요(남/여): ");
+                    System.out.print("등록할 회원 성별을 입력해주세요(남/여): ");
                     String genderInput = scanner.nextLine();
                     Gender gender = "남".equals(genderInput) ? Gender.MALE : Gender.FEMALE;
 
@@ -88,6 +89,12 @@ public class Main {
                     }
                     break;
                 case "4":
+                    System.out.print("삭제할 회원 ID를 입력하세요: ");
+                    Long id =  Long.parseLong(scanner.nextLine());
+                    // todo: 존재하는 회원인지 확인하는 예외
+                    memberController.deleteMemberById(id);
+                    break;
+                case "5":
                     System.out.println("👋 서비스를 종료합니다. 안녕히 계세요!");
                     scanner.close();
                     return;
