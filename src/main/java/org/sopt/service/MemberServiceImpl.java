@@ -15,7 +15,6 @@ public class MemberServiceImpl implements MemberService {
     private static long sequence = 1L;
 
     public Long join(String name, LocalDate birthDate, String email, Gender gender) {
-
         Member member = new Member(sequence++, name, birthDate, email, gender);
         memberRepository.save(member);
         return member.getId();
