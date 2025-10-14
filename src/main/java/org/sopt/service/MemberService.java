@@ -13,5 +13,6 @@ public interface MemberService {
     Optional<Member> findOne(Long memberId);
 
     List<Member> findAllMembers();
+
     void deleteId(Long memberId);
 }
