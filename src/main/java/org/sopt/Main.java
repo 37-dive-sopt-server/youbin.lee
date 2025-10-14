@@ -17,8 +17,8 @@ public class Main {
     public static void main(String[] args) {
 
         MemoryMemberRepository memberRepository = new MemoryMemberRepository();
-        MemberService memberService = new MemberServiceImpl();
-        MemberController memberController = new MemberController();
+        MemberService memberService = new MemberServiceImpl(memberRepository);
+        MemberController memberController = new MemberController(memberService);
 
         Scanner scanner = new Scanner(System.in);
 
