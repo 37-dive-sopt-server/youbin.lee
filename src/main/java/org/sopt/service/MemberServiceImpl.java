@@ -1,9 +1,7 @@
 package org.sopt.service;
 
-import org.sopt.common.execption.MemberException;
+import org.sopt.common.execption.CustomException;
 import org.sopt.common.execption.enums.ErrorMessage;
-import org.sopt.common.validator.EmailValidator;
-import org.sopt.common.validator.NameValidator;
 import org.sopt.domain.Gender;
 import org.sopt.domain.Member;
 import org.sopt.repository.MemberRepository;
@@ -23,8 +21,6 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Long join(String name, LocalDate birthDate, String email, String gender) {
-        NameValidator.validateName(name);
-        EmailValidator.validateFormat(email);
         validateDuplicateEmail(email);
         validateMemberAge(birthDate);
 
@@ -37,7 +33,7 @@ public class MemberServiceImpl implements MemberService {
     private void validateDuplicateEmail(String email) {
         memberRepository.findByEmail(email)
                 .ifPresent(m -> {
-                    throw new MemberException(ErrorMessage.EMAIL_ALREADY_EXIST);
+                    throw new CustomException(ErrorMessage.EMAIL_ALREADY_EXIST);
                 });
     }
 
@@ -45,14 +41,14 @@ public class MemberServiceImpl implements MemberService {
         int age = Period.between(birthDate, LocalDate.now()).getYears();
 
         if (age < 20) {
-            throw new MemberException(ErrorMessage.AGE_IS_UNDERAGE);
+            throw new CustomException(ErrorMessage.AGE_IS_UNDERAGE);
         }
     }
 
     @Override
     public Member findByIdOrThrow(Long memberId) {
         return memberRepository.findById(memberId)
-                .orElseThrow(() -> new MemberException(ErrorMessage.MEMBER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(ErrorMessage.MEMBER_NOT_FOUND));
     }
 
     @Override

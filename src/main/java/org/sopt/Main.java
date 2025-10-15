@@ -1,6 +1,6 @@
 package org.sopt;
 
-import org.sopt.common.execption.MemberException;
+import org.sopt.common.execption.CustomException;
 import org.sopt.controller.MemberController;
 import org.sopt.domain.Member;
 import org.sopt.repository.MemoryMemberRepository;
@@ -82,7 +82,7 @@ public class Main {
                     default:
                         System.out.println("🚫 잘못된 메뉴 선택입니다. 다시 시도해주세요.");
                 }
-            } catch (MemberException e) {
+            } catch (CustomException e) {
                 System.out.println(e.getMessage());
             }
         }
