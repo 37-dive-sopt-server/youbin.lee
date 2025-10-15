@@ -8,7 +8,6 @@ import org.sopt.repository.MemberRepository;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 public class MemberServiceImpl implements MemberService {
 
@@ -36,8 +35,9 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Optional<Member> findOne(Long memberId) {
-        return memberRepository.findById(memberId);
+    public Member findByIdOrThrow(Long memberId) {
+        return memberRepository.findById(memberId)
+                .orElseThrow(() -> new CustomException(ErrorMessage.MEMBER_NOT_FOUND));
     }
 
     @Override
@@ -49,4 +49,5 @@ public class MemberServiceImpl implements MemberService {
     public void deleteId(Long memberId) {
         memberRepository.deleteById(memberId);
     }
+
 }
