@@ -2,11 +2,11 @@ package org.sopt.common.execption;
 
 import org.sopt.common.execption.enums.ErrorMessage;
 
-public class CustomException extends RuntimeException {
+public class MemberException extends RuntimeException {
 
     private ErrorMessage errorMessage;
 
-    public CustomException(ErrorMessage errorMessage) {
+    public MemberException(ErrorMessage errorMessage) {
         super(errorMessage.getMessage());
         this.errorMessage = errorMessage;
     }

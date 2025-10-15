@@ -1,8 +1,7 @@
 package org.sopt;
 
-import org.sopt.common.execption.CustomException;
+import org.sopt.common.execption.MemberException;
 import org.sopt.controller.MemberController;
-import org.sopt.domain.Gender;
 import org.sopt.domain.Member;
 import org.sopt.repository.MemoryMemberRepository;
 import org.sopt.service.MemberService;
@@ -29,25 +28,21 @@ public class Main {
             try {
                 switch (choice) {
                     case "1":
-                        try {
-                            System.out.print("등록할 회원 이름을 입력하세요: ");
-                            String name = scanner.nextLine();
+                        System.out.print("등록할 회원 이름을 입력하세요: ");
+                        String name = scanner.nextLine();
 
-                            System.out.print("등록할 회원 생년월일을 입력해주세요(YYYY-MM-DD): ");
-                            LocalDate birthDate = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ISO_LOCAL_DATE);
+                        System.out.print("등록할 회원 생년월일을 입력해주세요(YYYY-MM-DD): ");
+                        LocalDate birthDate = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ISO_LOCAL_DATE);
 
-                            System.out.print("등록할 회원 이메일을 입력해주세요: ");
-                            String email = scanner.nextLine();
+                        System.out.print("등록할 회원 이메일을 입력해주세요: ");
+                        String email = scanner.nextLine();
 
-                            System.out.print("등록할 회원 성별을 입력해주세요(남/여): ");
-                            String gender = scanner.nextLine();
+                        System.out.print("등록할 회원 성별을 입력해주세요(남/여): ");
+                        String gender = scanner.nextLine();
 
-                            Long createdId = memberController.createMember(name, birthDate, email, gender);
+                        Long createdId = memberController.createMember(name, birthDate, email, gender);
 
-                            System.out.println("✅ 회원 등록 완료 (ID: " + createdId + ")");
-                        } catch (CustomException e) {
-                            System.out.println(e.getMessage());
-                        }
+                        System.out.println("✅ 회원 등록 완료 (ID: " + createdId + ")");
                         break;
                     case "2":
                         try {
@@ -58,8 +53,6 @@ public class Main {
                             System.out.println("✅ 조회된 회원: ID=" + foundMember.getId() + ", 이름=" + foundMember.getName());
                         } catch (NumberFormatException e) {
                             System.out.println("❌ 유효하지 않은 ID 형식입니다. 숫자를 입력해주세요.");
-                        } catch (CustomException e) {
-                            System.out.println(e.getMessage());
                         }
                         break;
                     case "3":
@@ -75,16 +68,12 @@ public class Main {
                         }
                         break;
                     case "4":
-                        try {
-                            System.out.print("삭제할 회원 ID를 입력하세요: ");
-                            Long id = Long.parseLong(scanner.nextLine());
+                        System.out.print("삭제할 회원 ID를 입력하세요: ");
+                        Long id = Long.parseLong(scanner.nextLine());
 
-                            memberController.findMemberByIdOrThrow(id);
+                        memberController.findMemberByIdOrThrow(id);
 
-                            memberController.deleteMemberById(id);
-                        } catch (CustomException e) {
-                            System.out.println(e.getMessage());
-                        }
+                        memberController.deleteMemberById(id);
                         break;
                     case "5":
                         System.out.println("👋 서비스를 종료합니다. 안녕히 계세요!");
@@ -93,7 +82,7 @@ public class Main {
                     default:
                         System.out.println("🚫 잘못된 메뉴 선택입니다. 다시 시도해주세요.");
                 }
-            } catch (Exception e) {
+            } catch (MemberException e) {
                 System.out.println(e.getMessage());
             }
         }
