@@ -3,6 +3,7 @@ package org.sopt;
 import org.sopt.common.execption.CustomException;
 import org.sopt.controller.MemberController;
 import org.sopt.domain.Member;
+import org.sopt.repository.MemberRepository;
 import org.sopt.repository.MemoryMemberRepository;
 import org.sopt.service.MemberService;
 import org.sopt.service.MemberServiceImpl;
@@ -15,7 +16,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        MemoryMemberRepository memberRepository = new MemoryMemberRepository();
+        MemberRepository memberRepository = new MemoryMemberRepository();
         MemberService memberService = new MemberServiceImpl(memberRepository);
         MemberController memberController = new MemberController(memberService);
 
