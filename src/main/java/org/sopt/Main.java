@@ -26,9 +26,9 @@ public class Main {
             printDefaultMenu();
             String choice = scanner.nextLine();
 
-            try {
-                switch (choice) {
-                    case "1":
+            switch (choice) {
+                case "1":
+                    try {
                         System.out.print("등록할 회원 이름을 입력하세요: ");
                         String name = scanner.nextLine();
 
@@ -44,47 +44,53 @@ public class Main {
                         Long createdId = memberController.createMember(name, birthDate, email, gender);
 
                         System.out.println("✅ 회원 등록 완료 (ID: " + createdId + ")");
-                        break;
-                    case "2":
-                        try {
-                            System.out.print("조회할 회원 ID를 입력하세요: ");
-                            Long id = Long.parseLong(scanner.nextLine());
-                            Member foundMember = memberController.findMemberByIdOrThrow(id);
+                    } catch (CustomException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                case "2":
+                    try {
+                        System.out.print("조회할 회원 ID를 입력하세요: ");
+                        Long id = Long.parseLong(scanner.nextLine());
+                        Member foundMember = memberController.findMemberByIdOrThrow(id);
 
-                            System.out.println("✅ 조회된 회원: ID=" + foundMember.getId() + ", 이름=" + foundMember.getName());
-                        } catch (NumberFormatException e) {
-                            System.out.println("❌ 유효하지 않은 ID 형식입니다. 숫자를 입력해주세요.");
+                        System.out.println("✅ 조회된 회원: ID=" + foundMember.getId() + ", 이름=" + foundMember.getName());
+                    } catch (NumberFormatException e) {
+                        System.out.println("❌ 유효하지 않은 ID 형식입니다. 숫자를 입력해주세요.");
+                    } catch (CustomException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                case "3":
+                    List<Member> allMembers = memberController.getAllMembers();
+                    if (allMembers.isEmpty()) {
+                        System.out.println("ℹ️ 등록된 회원이 없습니다.");
+                    } else {
+                        System.out.println("--- 📋 전체 회원 목록 📋 ---");
+                        for (Member member : allMembers) {
+                            System.out.println("👤 ID=" + member.getId() + ", 이름=" + member.getName());
                         }
-                        break;
-                    case "3":
-                        List<Member> allMembers = memberController.getAllMembers();
-                        if (allMembers.isEmpty()) {
-                            System.out.println("ℹ️ 등록된 회원이 없습니다.");
-                        } else {
-                            System.out.println("--- 📋 전체 회원 목록 📋 ---");
-                            for (Member member : allMembers) {
-                                System.out.println("👤 ID=" + member.getId() + ", 이름=" + member.getName());
-                            }
-                            System.out.println("--------------------------");
-                        }
-                        break;
-                    case "4":
+                        System.out.println("--------------------------");
+                    }
+                    break;
+                case "4":
+                    try {
                         System.out.print("삭제할 회원 ID를 입력하세요: ");
                         Long id = Long.parseLong(scanner.nextLine());
 
                         memberController.findMemberByIdOrThrow(id);
 
                         memberController.deleteMemberById(id);
-                        break;
-                    case "5":
-                        System.out.println("👋 서비스를 종료합니다. 안녕히 계세요!");
-                        scanner.close();
-                        return;
-                    default:
-                        System.out.println("🚫 잘못된 메뉴 선택입니다. 다시 시도해주세요.");
-                }
-            } catch (CustomException e) {
-                System.out.println(e.getMessage());
+                    } catch (CustomException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                case "5":
+                    System.out.println("👋 서비스를 종료합니다. 안녕히 계세요!");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("🚫 잘못된 메뉴 선택입니다. 다시 시도해주세요.");
             }
         }
     }
