@@ -1,5 +1,6 @@
 package org.sopt;
 
+import org.sopt.common.execption.CustomException;
 import org.sopt.controller.MemberController;
 import org.sopt.domain.Gender;
 import org.sopt.domain.Member;
@@ -23,43 +24,35 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("\n✨ --- DIVE SOPT 회원 관리 서비스 --- ✨");
-            System.out.println("---------------------------------");
-            System.out.println("1️⃣. 회원 등록 ➕");
-            System.out.println("2️⃣. ID로 회원 조회 🔍");
-            System.out.println("3️⃣. 전체 회원 조회 📋");
-            System.out.println("4️⃣. 회원 삭제 🗑️");
-            System.out.println("5️⃣. 종료 🚪");
-            System.out.println("---------------------------------");
-            System.out.print("메뉴를 선택하세요: ");
-
+            printDefaultMenu();
             String choice = scanner.nextLine();
 
             switch (choice) {
                 case "1":
-                    System.out.print("등록할 회원 이름을 입력하세요: ");
-                    String name = scanner.nextLine();
-                    if (name.trim().isEmpty()) {
-                        System.out.println("⚠️ 이름을 입력해주세요.");
-                        continue;
-                    }
+                    try {
+                        System.out.print("등록할 회원 이름을 입력하세요: ");
+                        String name = scanner.nextLine();
 
-                    System.out.print("등록할 회원 생년월일을 입력해주세요(YYYY-MM-DD): ");
-                    LocalDate birthDate = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ISO_LOCAL_DATE);
+                        System.out.print("등록할 회원 생년월일을 입력해주세요(YYYY-MM-DD): ");
+                        LocalDate birthDate = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ISO_LOCAL_DATE);
 
-                    System.out.print("등록할 회원 이메일을 입력해주세요: ");
-                    String email = scanner.nextLine();
+                        System.out.print("등록할 회원 이메일을 입력해주세요: ");
+                        String email = scanner.nextLine();
 
-                    System.out.print("등록할 회원 성별을 입력해주세요(남/여): ");
-                    String genderInput = scanner.nextLine();
-                    Gender gender = "남".equals(genderInput) ? Gender.MALE : Gender.FEMALE;
+                        System.out.print("등록할 회원 성별을 입력해주세요(남/여): ");
+                        String genderInput = scanner.nextLine();
+                        Gender gender = "남".equals(genderInput) ? Gender.MALE : Gender.FEMALE;
 
-                    Long createdId = memberController.createMember(name, birthDate, email, gender);
+                        Long createdId = memberController.createMember(name, birthDate, email, gender);
 
-                    if (createdId != null) {
-                        System.out.println("✅ 회원 등록 완료 (ID: " + createdId + ")");
-                    } else {
-                        System.out.println("❌ 회원 등록 실패");
+                        if (createdId != null) {
+                            System.out.println("✅ 회원 등록 완료 (ID: " + createdId + ")");
+                        } else {
+                            System.out.println("❌ 회원 등록 실패");
+                        }
+
+                    } catch (CustomException e) {
+                        System.out.println(e.getMessage());
                     }
                     break;
                 case "2":
@@ -90,7 +83,7 @@ public class Main {
                     break;
                 case "4":
                     System.out.print("삭제할 회원 ID를 입력하세요: ");
-                    Long id =  Long.parseLong(scanner.nextLine());
+                    Long id = Long.parseLong(scanner.nextLine());
                     // todo: 존재하는 회원인지 확인하는 예외
                     memberController.deleteMemberById(id);
                     break;
@@ -102,5 +95,17 @@ public class Main {
                     System.out.println("🚫 잘못된 메뉴 선택입니다. 다시 시도해주세요.");
             }
         }
+    }
+
+    private static void printDefaultMenu() {
+        System.out.println("\n✨ --- DIVE SOPT 회원 관리 서비스 --- ✨");
+        System.out.println("---------------------------------");
+        System.out.println("1️⃣. 회원 등록 ➕");
+        System.out.println("2️⃣. ID로 회원 조회 🔍");
+        System.out.println("3️⃣. 전체 회원 조회 📋");
+        System.out.println("4️⃣. 회원 삭제 🗑️");
+        System.out.println("5️⃣. 종료 🚪");
+        System.out.println("---------------------------------");
+        System.out.print("메뉴를 선택하세요: ");
     }
 }

@@ -1,5 +1,7 @@
 package org.sopt.service;
 
+import org.sopt.common.execption.CustomException;
+import org.sopt.common.execption.enums.ErrorMessage;
 import org.sopt.domain.Gender;
 import org.sopt.domain.Member;
 import org.sopt.repository.MemberRepository;
@@ -27,9 +29,10 @@ public class MemberServiceImpl implements MemberService {
     }
 
     private void validateEmail(String email) {
-        if (memberRepository.findByEmail(email).isPresent()) {
-            throw new IllegalStateException("이미 존재하는 이메일입니다.");
-        }
+        memberRepository.findByEmail(email)
+                .ifPresent(m -> {
+                    throw new CustomException(ErrorMessage.EMAIL_ALREADY_EXIST);
+                });
     }
 
     @Override
