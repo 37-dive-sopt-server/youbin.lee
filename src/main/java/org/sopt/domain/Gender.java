@@ -1,5 +1,8 @@
 package org.sopt.domain;
 
+import org.sopt.common.execption.CustomException;
+import org.sopt.common.execption.enums.ErrorMessage;
+
 public enum Gender {
     MALE("남"),
     FEMALE("여");
@@ -16,6 +19,6 @@ public enum Gender {
                 return g;
             }
         }
-        throw new IllegalArgumentException("⚠️ 올바르지 않은 성별 값입니다.");
+        throw new CustomException(ErrorMessage.INVALID_GENDER);
     }
 }

@@ -7,7 +7,8 @@ public enum ErrorMessage {
     MEMBER_NOT_FOUND("⚠️ 해당 ID의 회원을 찾을 수 없습니다."),
     EMAIL_ALREADY_EXIST("⚠️ 이미 존재하는 이메일입니다."),
     INVALID_EMAIL_FORMAT("⚠️ 올바르지 않은 이메일 형식입니다."),
-    AGE_IS_UNDERAGE("⚠️ 20세 미만의 회원은 가입이 불가능합니다.");
+    AGE_IS_UNDERAGE("⚠️ 20세 미만의 회원은 가입이 불가능합니다."),
+    INVALID_GENDER("⚠️ 올바르지 않은 성별 값입니다.");
 
     private final String message;
 
