@@ -50,8 +50,8 @@ public class Main {
                     }
                     break;
                 case "2":
-                    System.out.print("조회할 회원 ID를 입력하세요: ");
                     try {
+                        System.out.print("조회할 회원 ID를 입력하세요: ");
                         Long id = Long.parseLong(scanner.nextLine());
                         Member foundMember = memberController.findMemberByIdOrThrow(id);
 
@@ -75,9 +75,16 @@ public class Main {
                     }
                     break;
                 case "4":
-                    System.out.print("삭제할 회원 ID를 입력하세요: ");
-                    Long id = Long.parseLong(scanner.nextLine());
-                    memberController.deleteMemberById(id);
+                    try {
+                        System.out.print("삭제할 회원 ID를 입력하세요: ");
+                        Long id = Long.parseLong(scanner.nextLine());
+
+                        memberController.findMemberByIdOrThrow(id);
+
+                        memberController.deleteMemberById(id);
+                    } catch (CustomException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case "5":
                     System.out.println("👋 서비스를 종료합니다. 안녕히 계세요!");
