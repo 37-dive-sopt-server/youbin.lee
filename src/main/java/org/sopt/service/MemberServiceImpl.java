@@ -22,7 +22,7 @@ public class MemberServiceImpl implements MemberService {
     public Long join(String name, LocalDate birthDate, String email, String gender) {
         validateDuplicateEmail(email);
 
-        Member member = new Member(sequence++, name, birthDate, email, Gender.valueOf(gender));
+        Member member = new Member(sequence++, name, birthDate, email, Gender.from(gender));
         memberRepository.save(member);
 
         return member.getId();
