@@ -9,6 +9,7 @@ import org.sopt.domain.Member;
 import org.sopt.repository.MemberRepository;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 public class MemberServiceImpl implements MemberService {
@@ -25,7 +26,7 @@ public class MemberServiceImpl implements MemberService {
         NameValidator.validateName(name);
         EmailValidator.validateFormat(email);
         validateDuplicateEmail(email);
-       // validateMemberAge
+        validateMemberAge(birthDate);
 
         Member member = new Member(sequence++, name, birthDate, email, Gender.from(gender));
         memberRepository.save(member);
@@ -38,6 +39,14 @@ public class MemberServiceImpl implements MemberService {
                 .ifPresent(m -> {
                     throw new MemberException(ErrorMessage.EMAIL_ALREADY_EXIST);
                 });
+    }
+
+    private void validateMemberAge(LocalDate birthDate) {
+        int age = Period.between(birthDate, LocalDate.now()).getYears();
+
+        if (age < 20) {
+            throw new MemberException(ErrorMessage.AGE_IS_UNDERAGE);
+        }
     }
 
     @Override
