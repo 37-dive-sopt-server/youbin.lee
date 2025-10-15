@@ -1,6 +1,5 @@
 package org.sopt.common.validator;
 
-import org.sopt.common.execption.CustomException;
 import org.sopt.common.execption.enums.ErrorMessage;
 
 public class EmailValidator {
@@ -9,7 +8,7 @@ public class EmailValidator {
 
     public static void validateFormat(String email) {
         if (email == null || !email.matches(EMAIL_REGEX)) {
-            throw new CustomException(ErrorMessage.INVALID_EMAIL_FORMAT);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_EMAIL_FORMAT.getMessage());
         }
     }
 
