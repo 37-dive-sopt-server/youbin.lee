@@ -10,6 +10,7 @@ public class MemoryMemberRepository implements MemberRepository {
 
     public Member save(Member member) {
         store.put(member.getId(), member);
+
         return member;
     }
 
