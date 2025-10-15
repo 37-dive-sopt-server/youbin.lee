@@ -20,14 +20,15 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Long join(String name, LocalDate birthDate, String email, Gender gender) {
-        validateEmail(email);
+        validateDuplicateEmail(email);
 
         Member member = new Member(sequence++, name, birthDate, email, gender);
         memberRepository.save(member);
+
         return member.getId();
     }
 
-    private void validateEmail(String email) {
+    private void validateDuplicateEmail(String email) {
         memberRepository.findByEmail(email)
                 .ifPresent(m -> {
                     throw new CustomException(ErrorMessage.EMAIL_ALREADY_EXIST);
@@ -49,5 +50,5 @@ public class MemberServiceImpl implements MemberService {
     public void deleteId(Long memberId) {
         memberRepository.deleteById(memberId);
     }
-
+    
 }

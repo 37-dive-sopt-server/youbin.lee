@@ -77,7 +77,6 @@ public class Main {
                 case "4":
                     System.out.print("삭제할 회원 ID를 입력하세요: ");
                     Long id = Long.parseLong(scanner.nextLine());
-                    // todo: 존재하는 회원인지 확인하는 예외
                     memberController.deleteMemberById(id);
                     break;
                 case "5":

@@ -1,5 +1,6 @@
 package org.sopt.controller;
 
+import org.sopt.common.validator.EmailValidator;
 import org.sopt.common.validator.NameValidator;
 import org.sopt.domain.Gender;
 import org.sopt.domain.Member;
@@ -18,6 +19,7 @@ public class MemberController {
 
     public Long createMember(String name, LocalDate birthDate, String email, Gender gender) {
         NameValidator.validateName(name);
+        EmailValidator.validateFormat(email);
 
         return memberService.join(name, birthDate, email, gender);
     }
