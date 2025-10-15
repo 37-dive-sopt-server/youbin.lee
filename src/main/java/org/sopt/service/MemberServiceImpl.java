@@ -19,10 +19,10 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Long join(String name, LocalDate birthDate, String email, Gender gender) {
+    public Long join(String name, LocalDate birthDate, String email, String gender) {
         validateDuplicateEmail(email);
 
-        Member member = new Member(sequence++, name, birthDate, email, gender);
+        Member member = new Member(sequence++, name, birthDate, email, Gender.valueOf(gender));
         memberRepository.save(member);
 
         return member.getId();
@@ -50,5 +50,5 @@ public class MemberServiceImpl implements MemberService {
     public void deleteId(Long memberId) {
         memberRepository.deleteById(memberId);
     }
-    
+
 }
