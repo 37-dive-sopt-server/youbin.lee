@@ -4,11 +4,8 @@ import org.sopt.common.execption.enums.ErrorMessage;
 
 public class CustomException extends RuntimeException {
 
-    private ErrorMessage errorMessage;
-
     public CustomException(ErrorMessage errorMessage) {
         super(errorMessage.getMessage());
-        this.errorMessage = errorMessage;
     }
 
 }
