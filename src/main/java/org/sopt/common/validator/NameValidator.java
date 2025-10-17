@@ -6,7 +6,7 @@ import org.sopt.common.execption.enums.ErrorMessage;
 public class NameValidator {
 
     public static void validateName(String name) {
-        if (name.trim().isEmpty()) {
+        if (name == null || name.trim().isEmpty()) {
             throw new CustomException(ErrorMessage.NAME_IS_REQUIRED);
         }
     }
