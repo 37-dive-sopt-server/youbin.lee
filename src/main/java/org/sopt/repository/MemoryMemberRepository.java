@@ -7,7 +7,7 @@ import java.util.*;
 public class MemoryMemberRepository implements MemberRepository {
 
     private static final Map<Long, Member> store = new HashMap<>();
-    private long sequence = 1L;
+    private static long sequence = 1L;
 
     public Long createId() {
         return sequence++;
