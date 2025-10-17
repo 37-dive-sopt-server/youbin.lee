@@ -13,7 +13,6 @@ import java.util.List;
 public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
-    private long sequence = 1L;
 
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
@@ -24,7 +23,8 @@ public class MemberServiceImpl implements MemberService {
         validateDuplicateEmail(email);
         validateMemberAge(birthDate);
 
-        Member member = new Member(sequence++, name, birthDate, email, Gender.from(gender));
+        Long id = memberRepository.createId();
+        Member member = new Member(id, name, birthDate, email, Gender.from(gender));
         memberRepository.save(member);
 
         return member.getId();
