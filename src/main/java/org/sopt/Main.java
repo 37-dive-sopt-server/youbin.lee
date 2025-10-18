@@ -49,7 +49,7 @@ public class Main {
                         try {
                             System.out.print("조회할 회원 ID를 입력하세요: ");
                             Long id = Long.parseLong(scanner.nextLine());
-                            Member foundMember = memberController.findMemberByIdOrThrow(id);
+                            Member foundMember = memberController.findMember(id);
 
                             System.out.println("✅ 조회된 회원: ID=" + foundMember.getId() + ", 이름=" + foundMember.getName());
                         } catch (NumberFormatException e) {

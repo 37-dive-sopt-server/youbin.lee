@@ -23,7 +23,7 @@ public class MemberController {
         return memberService.join(name, birthDate, email, gender);
     }
 
-    public Member findMemberByIdOrThrow(Long id) {
+    public Member findMember(Long id) {
         return memberService.findByIdOrThrow(id);
     }
 
