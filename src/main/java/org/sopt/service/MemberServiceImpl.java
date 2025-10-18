@@ -58,6 +58,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void deleteId(Long memberId) {
+        findByIdOrThrow(memberId);
         memberRepository.deleteById(memberId);
     }
 
