@@ -74,7 +74,8 @@ public class Main {
                         try {
                             System.out.print("삭제할 회원 ID를 입력하세요: ");
                             Long id = Long.parseLong(scanner.nextLine());
-                            memberController.deleteMemberById(id);
+                            boolean isSuccess = memberController.deleteMemberById(id);
+                            if (isSuccess) System.out.println("⭕️ 삭제가 성공적으로 완료됐습니다.");
                         } catch (CustomException e) {
                             System.out.println(e.getMessage());
                         }

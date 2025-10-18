@@ -57,9 +57,9 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void deleteId(Long memberId) {
+    public boolean deleteId(Long memberId) {
         findByIdOrThrow(memberId);
-        memberRepository.deleteById(memberId);
+        return memberRepository.deleteById(memberId);
     }
 
 }

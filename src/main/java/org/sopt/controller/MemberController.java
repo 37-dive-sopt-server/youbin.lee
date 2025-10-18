@@ -31,8 +31,8 @@ public class MemberController {
         return memberService.findAllMembers();
     }
 
-    public void deleteMemberById(Long id) {
-        memberService.deleteId(id);
+    public boolean deleteMemberById(Long id) {
+        return memberService.deleteId(id);
     }
 
 }

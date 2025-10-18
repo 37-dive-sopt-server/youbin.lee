@@ -33,8 +33,8 @@ public class MemoryMemberRepository implements MemberRepository {
         return new ArrayList<>(store.values());
     }
 
-    public void deleteById(Long id) {
-        store.remove(id);
+    public boolean deleteById(Long id) {
+        return store.remove(id) != null;
     }
 
 }

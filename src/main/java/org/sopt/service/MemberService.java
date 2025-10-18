@@ -12,5 +12,5 @@ public interface MemberService {
 
     List<Member> findAllMembers();
 
-    void deleteId(Long memberId);
+    boolean deleteId(Long memberId);
 }

@@ -16,5 +16,5 @@ public interface MemberRepository {
 
     List<Member> findAll();
 
-    void deleteById(Long id);
+    boolean deleteById(Long id);
 }
