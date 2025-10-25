@@ -4,18 +4,21 @@ import org.sopt.common.validator.EmailValidator;
 import org.sopt.common.validator.NameValidator;
 import org.sopt.domain.Member;
 import org.sopt.service.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@RestController
 public class MemberController {
 
-    private final MemberService memberService;
+    @Autowired
+    private MemberService memberService;
 
-    public MemberController(MemberService memberService) {
-        this.memberService = memberService;
-    }
-
+    @PostMapping("/users")
     public Long createMember(String name, LocalDate birthDate, String email, String gender) {
         NameValidator.validateName(name);
         EmailValidator.validateFormat(email);
@@ -23,10 +26,12 @@ public class MemberController {
         return memberService.join(name, birthDate, email, gender);
     }
 
+    @GetMapping("/users")
     public Member findMember(Long id) {
         return memberService.findByIdOrThrow(id);
     }
 
+    @GetMapping("/users/all")
     public List<Member> getAllMembers() {
         return memberService.findAllMembers();
     }

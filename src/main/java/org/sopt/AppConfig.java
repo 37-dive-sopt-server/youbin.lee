@@ -13,10 +13,10 @@ public class AppConfig {
     }
 
     public MemberService memberService() {
-        return new MemberServiceImpl(memberRepository());
+        return new MemberServiceImpl();
     }
 
     public MemberController memberController() {
-        return new MemberController(memberService());
+        return new MemberController();
     }
 }

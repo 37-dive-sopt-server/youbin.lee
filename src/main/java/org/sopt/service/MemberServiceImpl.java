@@ -5,18 +5,18 @@ import org.sopt.common.execption.enums.ErrorMessage;
 import org.sopt.domain.Gender;
 import org.sopt.domain.Member;
 import org.sopt.repository.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
 
+@Service
 public class MemberServiceImpl implements MemberService {
 
-    private final MemberRepository memberRepository;
-
-    public MemberServiceImpl(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
-    }
+    @Autowired
+    private MemberRepository memberRepository;
 
     @Override
     public Long join(String name, LocalDate birthDate, String email, String gender) {
