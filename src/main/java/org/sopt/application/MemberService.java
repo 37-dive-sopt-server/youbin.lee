@@ -1,12 +1,12 @@
-package org.sopt.service;
+package org.sopt.application;
 
+import org.sopt.application.dto.MemberCreateRequest;
 import org.sopt.domain.Member;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface MemberService {
-    Long join(String name, LocalDate birthDate, String email, String gender);
+    Long join(MemberCreateRequest request);
 
     Member findByIdOrThrow(Long memberId);
 

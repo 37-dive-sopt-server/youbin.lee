@@ -1,15 +1,16 @@
-package org.sopt.controller;
+package org.sopt.ui;
 
+import org.sopt.application.MemberService;
+import org.sopt.application.dto.MemberCreateRequest;
 import org.sopt.common.validator.EmailValidator;
 import org.sopt.common.validator.NameValidator;
 import org.sopt.domain.Member;
-import org.sopt.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -19,11 +20,13 @@ public class MemberController {
     private MemberService memberService;
 
     @PostMapping("/users")
-    public Long createMember(String name, LocalDate birthDate, String email, String gender) {
-        NameValidator.validateName(name);
-        EmailValidator.validateFormat(email);
+    public Long createMember(
+            @RequestBody MemberCreateRequest request
+    ) {
+        NameValidator.validateName(request.name());
+        EmailValidator.validateFormat(request.email());
 
-        return memberService.join(name, birthDate, email, gender);
+        return memberService.join(request);
     }
 
     @GetMapping("/users")
@@ -35,6 +38,7 @@ public class MemberController {
     public List<Member> getAllMembers() {
         return memberService.findAllMembers();
     }
+
 
     public boolean deleteMemberById(Long id) {
         return memberService.deleteId(id);

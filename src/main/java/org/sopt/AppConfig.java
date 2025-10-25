@@ -1,10 +1,10 @@
 package org.sopt;
 
-import org.sopt.controller.MemberController;
+import org.sopt.ui.MemberController;
 import org.sopt.repository.MemberRepository;
 import org.sopt.repository.MemoryMemberRepository;
-import org.sopt.service.MemberService;
-import org.sopt.service.MemberServiceImpl;
+import org.sopt.application.MemberService;
+import org.sopt.application.MemberServiceImpl;
 
 public class AppConfig {
 

@@ -1,5 +1,6 @@
-package org.sopt.service;
+package org.sopt.application;
 
+import org.sopt.application.dto.MemberCreateRequest;
 import org.sopt.common.execption.CustomException;
 import org.sopt.common.execption.enums.ErrorMessage;
 import org.sopt.domain.Gender;
@@ -19,12 +20,12 @@ public class MemberServiceImpl implements MemberService {
     private MemberRepository memberRepository;
 
     @Override
-    public Long join(String name, LocalDate birthDate, String email, String gender) {
-        validateDuplicateEmail(email);
-        validateMemberAge(birthDate);
+    public Long join(MemberCreateRequest request) {
+        validateDuplicateEmail(request.email());
+        validateMemberAge(request.birthDate());
 
         Long id = memberRepository.createId();
-        Member member = new Member(id, name, birthDate, email, Gender.from(gender));
+        Member member = new Member(id, request.name(), request.birthDate(), request.email(), Gender.from(request.gender()));
         memberRepository.save(member);
 
         return member.getId();
