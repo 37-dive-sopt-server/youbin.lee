@@ -5,7 +5,6 @@ import org.sopt.application.dto.MemberCreateRequest;
 import org.sopt.common.validator.EmailValidator;
 import org.sopt.common.validator.NameValidator;
 import org.sopt.domain.Member;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,8 +12,11 @@ import java.util.List;
 @RestController
 public class MemberController {
 
-    @Autowired
-    private MemberService memberService;
+    private final MemberService memberService;
+
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
+    }
 
     @PostMapping("/users")
     public Long createMember(
