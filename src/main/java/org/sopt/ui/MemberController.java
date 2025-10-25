@@ -38,7 +38,10 @@ public class MemberController {
         return memberService.findAllMembers();
     }
 
-    public boolean deleteMemberById(Long id) {
+    @DeleteMapping("/users/{id}")
+    public boolean deleteMemberById(
+            @PathVariable Long id
+    ) {
         return memberService.deleteId(id);
     }
 
