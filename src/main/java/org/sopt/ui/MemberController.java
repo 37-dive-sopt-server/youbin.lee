@@ -34,7 +34,7 @@ public class MemberController {
     public ResponseEntity<SuccessResponse<MemberFindResponseDto>> findMember(
             @PathVariable Long id
     ) {
-        MemberFindResponseDto response = memberService.findByIdOrThrow(id);
+        MemberFindResponseDto response = memberService.findById(id);
 
         return ResponseEntity.ok(SuccessResponse.of(SUCCESS_FIND_MEMBER, response));
     }
@@ -47,12 +47,12 @@ public class MemberController {
     }
 
     @DeleteMapping("/members/{id}")
-    public ResponseEntity<SuccessResponse<MemberDeleteResponseDto>> deleteMemberById(
+    public ResponseEntity<SuccessResponse> deleteMemberById(
             @PathVariable Long id
     ) {
-        MemberDeleteResponseDto response = memberService.deleteId(id);
+        memberService.deleteId(id);
 
-        return ResponseEntity.ok(SuccessResponse.of(SUCCESS_DELETED_MEMBERS, response));
+        return ResponseEntity.ok(SuccessResponse.of(SUCCESS_DELETED_MEMBERS));
     }
 
 }

@@ -49,9 +49,8 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public MemberFindResponseDto findByIdOrThrow(Long memberId) {
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new CustomException(ErrorMessage.MEMBER_NOT_FOUND));
+    public MemberFindResponseDto findById(Long memberId) {
+        Member member = findByIdOrThrow(memberId);
 
         return MemberFindResponseDto.from(member.getId());
     }
@@ -68,10 +67,13 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public MemberDeleteResponseDto deleteId(Long memberId) {
-        findByIdOrThrow(memberId);
-
-        return MemberDeleteResponseDto.from(memberRepository.deleteById(memberId));
+    public void deleteId(Long memberId) {
+        Member member = findByIdOrThrow(memberId);
+        memberRepository.deleteById(member.getId());
     }
 
+    private Member findByIdOrThrow(Long memberId) {
+        return memberRepository.findById(memberId)
+                .orElseThrow(() -> new CustomException(ErrorMessage.MEMBER_NOT_FOUND));
+    }
 }

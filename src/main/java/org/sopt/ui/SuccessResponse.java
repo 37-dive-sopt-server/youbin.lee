@@ -7,6 +7,10 @@ public record SuccessResponse<T>(
         String message,
         T result
 ) {
+    public static <T> SuccessResponse of(SuccessMessage successMessage){
+        return new SuccessResponse(successMessage.getStatus(), successMessage.getMessage(), null);
+    }
+
     public static <T> SuccessResponse of(SuccessMessage successMessage, T result) {
         return new SuccessResponse(successMessage.getStatus(), successMessage.getMessage(), result);
     }
