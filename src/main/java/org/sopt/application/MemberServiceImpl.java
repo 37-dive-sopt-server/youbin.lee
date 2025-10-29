@@ -2,6 +2,7 @@ package org.sopt.application;
 
 import org.sopt.application.dto.MemberCreateRequest;
 import org.sopt.application.dto.MemberCreateResponse;
+import org.sopt.application.dto.MemberFindResponseDto;
 import org.sopt.common.execption.CustomException;
 import org.sopt.common.execption.enums.ErrorMessage;
 import org.sopt.domain.Gender;
@@ -50,9 +51,11 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Member findByIdOrThrow(Long memberId) {
-        return memberRepository.findById(memberId)
+    public MemberFindResponseDto findByIdOrThrow(Long memberId) {
+        Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new CustomException(ErrorMessage.MEMBER_NOT_FOUND));
+
+        return MemberFindResponseDto.from(member.getId());
     }
 
     @Override
