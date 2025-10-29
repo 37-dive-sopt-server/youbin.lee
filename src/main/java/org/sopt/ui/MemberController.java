@@ -4,16 +4,13 @@ import org.sopt.application.MemberService;
 import org.sopt.application.dto.MemberCreateRequest;
 import org.sopt.application.dto.MemberCreateResponse;
 import org.sopt.application.dto.MemberFindResponseDto;
+import org.sopt.application.dto.MembersGetResponseDto;
 import org.sopt.common.validator.EmailValidator;
 import org.sopt.common.validator.NameValidator;
-import org.sopt.domain.Member;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-import static org.sopt.common.success.enums.SuccessMessage.SUCCESS_CREATE_MEMBER;
-import static org.sopt.common.success.enums.SuccessMessage.SUCCESS_FIND_MEMBER;
+import static org.sopt.common.success.enums.SuccessMessage.*;
 
 @RestController
 public class MemberController {
@@ -24,7 +21,7 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @PostMapping("/users")
+    @PostMapping("/members")
     public ResponseEntity<SuccessResponse<MemberCreateResponse>> createMember(
             @RequestBody MemberCreateRequest request
     ) {
@@ -36,7 +33,7 @@ public class MemberController {
         return ResponseEntity.ok(SuccessResponse.of(SUCCESS_CREATE_MEMBER, response));
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/members/{id}")
     public ResponseEntity<SuccessResponse<MemberFindResponseDto>> findMember(
             @PathVariable Long id
     ) {
@@ -45,12 +42,14 @@ public class MemberController {
         return ResponseEntity.ok(SuccessResponse.of(SUCCESS_FIND_MEMBER, response));
     }
 
-    @GetMapping("/users/all")
-    public List<Member> getAllMembers() {
-        return memberService.findAllMembers();
+    @GetMapping("/members")
+    public ResponseEntity<SuccessResponse<MembersGetResponseDto>> getAllMembers() {
+        MembersGetResponseDto response = memberService.findAllMembers();
+
+        return ResponseEntity.ok(SuccessResponse.of(SUCCESS_GET_MEMBERS, response));
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/members/{id}")
     public boolean deleteMemberById(
             @PathVariable Long id
     ) {
