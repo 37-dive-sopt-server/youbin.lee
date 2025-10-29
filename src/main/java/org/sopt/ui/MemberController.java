@@ -1,10 +1,7 @@
 package org.sopt.ui;
 
 import org.sopt.application.MemberService;
-import org.sopt.application.dto.MemberCreateRequest;
-import org.sopt.application.dto.MemberCreateResponse;
-import org.sopt.application.dto.MemberFindResponseDto;
-import org.sopt.application.dto.MembersGetResponseDto;
+import org.sopt.application.dto.*;
 import org.sopt.common.validator.EmailValidator;
 import org.sopt.common.validator.NameValidator;
 import org.springframework.http.ResponseEntity;
@@ -50,10 +47,12 @@ public class MemberController {
     }
 
     @DeleteMapping("/members/{id}")
-    public boolean deleteMemberById(
+    public ResponseEntity<SuccessResponse<MemberDeleteResponseDto>> deleteMemberById(
             @PathVariable Long id
     ) {
-        return memberService.deleteId(id);
+        MemberDeleteResponseDto response = memberService.deleteId(id);
+
+        return ResponseEntity.ok(SuccessResponse.of(SUCCESS_DELETED_MEMBERS, response));
     }
 
 }

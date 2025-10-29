@@ -9,7 +9,10 @@ public enum SuccessMessage {
     SUCCESS_FIND_MEMBER(200, "회원 조회에 성공했습니다"),
 
     //회원 전체 조회
-    SUCCESS_GET_MEMBERS(200, "회원 전체 조회에 성공했습니다");
+    SUCCESS_GET_MEMBERS(200, "회원 전체 조회에 성공했습니다"),
+
+    // 회원 삭제
+    SUCCESS_DELETED_MEMBERS(200, "회원 삭제에 성공했습니다");
 
     private final int status;
     private final String message;

@@ -1,9 +1,6 @@
 package org.sopt.application;
 
-import org.sopt.application.dto.MemberCreateRequest;
-import org.sopt.application.dto.MemberCreateResponse;
-import org.sopt.application.dto.MemberFindResponseDto;
-import org.sopt.application.dto.MembersGetResponseDto;
+import org.sopt.application.dto.*;
 import org.sopt.common.execption.CustomException;
 import org.sopt.common.execption.enums.ErrorMessage;
 import org.sopt.domain.Gender;
@@ -71,9 +68,10 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public boolean deleteId(Long memberId) {
+    public MemberDeleteResponseDto deleteId(Long memberId) {
         findByIdOrThrow(memberId);
-        return memberRepository.deleteById(memberId);
+
+        return MemberDeleteResponseDto.from(memberRepository.deleteById(memberId));
     }
 
 }
