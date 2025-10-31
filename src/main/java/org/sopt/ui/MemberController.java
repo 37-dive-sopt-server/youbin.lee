@@ -10,7 +10,7 @@ import org.sopt.common.validator.NameValidator;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import static org.sopt.common.success.enums.SuccessMessage.*;
+import static org.sopt.common.SuccessMessage.*;
 
 @RestController
 public class MemberController {

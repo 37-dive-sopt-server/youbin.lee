@@ -1,6 +1,6 @@
 package org.sopt.ui;
 
-import org.sopt.common.success.enums.SuccessMessage;
+import org.sopt.common.SuccessMessage;
 
 public record SuccessResponse<T>(
         int status,

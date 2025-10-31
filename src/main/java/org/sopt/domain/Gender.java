@@ -1,7 +1,7 @@
 package org.sopt.domain;
 
 import org.sopt.common.execption.CustomException;
-import org.sopt.common.execption.enums.ErrorMessage;
+import org.sopt.common.ErrorMessage;
 
 public enum Gender {
     MALE("남"),

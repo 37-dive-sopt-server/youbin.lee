@@ -5,7 +5,7 @@ import org.sopt.application.dto.response.MemberCreateResponse;
 import org.sopt.application.dto.response.MemberFindResponse;
 import org.sopt.application.dto.response.MembersGetResponse;
 import org.sopt.common.execption.CustomException;
-import org.sopt.common.execption.enums.ErrorMessage;
+import org.sopt.common.ErrorMessage;
 import org.sopt.domain.Gender;
 import org.sopt.domain.Member;
 import org.sopt.repository.MemberRepository;
