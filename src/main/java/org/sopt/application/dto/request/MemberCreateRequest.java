@@ -1,4 +1,4 @@
-package org.sopt.application.dto;
+package org.sopt.application.dto.request;
 
 import java.time.LocalDate;
 

@@ -1,6 +1,9 @@
 package org.sopt.application;
 
-import org.sopt.application.dto.*;
+import org.sopt.application.dto.request.MemberCreateRequest;
+import org.sopt.application.dto.response.MemberCreateResponse;
+import org.sopt.application.dto.response.MemberFindResponse;
+import org.sopt.application.dto.response.MembersGetResponse;
 import org.sopt.common.execption.CustomException;
 import org.sopt.common.execption.enums.ErrorMessage;
 import org.sopt.domain.Gender;

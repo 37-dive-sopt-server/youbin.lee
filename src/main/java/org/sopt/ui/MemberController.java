@@ -1,7 +1,10 @@
 package org.sopt.ui;
 
 import org.sopt.application.MemberService;
-import org.sopt.application.dto.*;
+import org.sopt.application.dto.request.MemberCreateRequest;
+import org.sopt.application.dto.response.MemberCreateResponse;
+import org.sopt.application.dto.response.MemberFindResponse;
+import org.sopt.application.dto.response.MembersGetResponse;
 import org.sopt.common.validator.EmailValidator;
 import org.sopt.common.validator.NameValidator;
 import org.springframework.http.ResponseEntity;
