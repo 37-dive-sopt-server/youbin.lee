@@ -5,6 +5,7 @@ import org.sopt.application.dto.request.MemberCreateRequest;
 import org.sopt.application.dto.response.MemberCreateResponse;
 import org.sopt.application.dto.response.MemberFindResponse;
 import org.sopt.application.dto.response.MembersGetResponse;
+import org.sopt.common.BaseApiResponse;
 import org.sopt.common.validator.EmailValidator;
 import org.sopt.common.validator.NameValidator;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class MemberController {
     }
 
     @PostMapping("/members")
-    public ResponseEntity<SuccessResponse<MemberCreateResponse>> createMember(
+    public ResponseEntity<BaseApiResponse<MemberCreateResponse>> createMember(
             @RequestBody MemberCreateRequest request
     ) {
         NameValidator.validateName(request.name());
@@ -30,32 +31,32 @@ public class MemberController {
 
         MemberCreateResponse response = memberService.join(request);
 
-        return ResponseEntity.ok(SuccessResponse.of(SUCCESS_CREATE_MEMBER, response));
+        return ResponseEntity.ok(BaseApiResponse.of(SUCCESS_CREATE_MEMBER, response));
     }
 
     @GetMapping("/members/{id}")
-    public ResponseEntity<SuccessResponse<MemberFindResponse>> findMember(
+    public ResponseEntity<BaseApiResponse<MemberFindResponse>> findMember(
             @PathVariable Long id
     ) {
         MemberFindResponse response = memberService.findById(id);
 
-        return ResponseEntity.ok(SuccessResponse.of(SUCCESS_FIND_MEMBER, response));
+        return ResponseEntity.ok(BaseApiResponse.of(SUCCESS_FIND_MEMBER, response));
     }
 
     @GetMapping("/members")
-    public ResponseEntity<SuccessResponse<MembersGetResponse>> getAllMembers() {
+    public ResponseEntity<BaseApiResponse<MembersGetResponse>> getAllMembers() {
         MembersGetResponse response = memberService.findAllMembers();
 
-        return ResponseEntity.ok(SuccessResponse.of(SUCCESS_GET_MEMBERS, response));
+        return ResponseEntity.ok(BaseApiResponse.of(SUCCESS_GET_MEMBERS, response));
     }
 
     @DeleteMapping("/members/{id}")
-    public ResponseEntity<SuccessResponse> deleteMemberById(
+    public ResponseEntity<BaseApiResponse> deleteMemberById(
             @PathVariable Long id
     ) {
         memberService.deleteId(id);
 
-        return ResponseEntity.ok(SuccessResponse.of(SUCCESS_DELETED_MEMBERS));
+        return ResponseEntity.ok(BaseApiResponse.of(SUCCESS_DELETED_MEMBERS));
     }
 
 }
