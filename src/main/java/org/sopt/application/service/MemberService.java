@@ -1,4 +1,4 @@
-package org.sopt.application;
+package org.sopt.application.service;
 
 import org.sopt.application.dto.request.MemberCreateRequest;
 import org.sopt.application.dto.response.MemberCreateResponse;

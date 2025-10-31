@@ -1,6 +1,6 @@
 package org.sopt.presentation;
 
-import org.sopt.application.MemberService;
+import org.sopt.application.service.MemberService;
 import org.sopt.application.dto.request.MemberCreateRequest;
 import org.sopt.application.dto.response.MemberCreateResponse;
 import org.sopt.application.dto.response.MemberFindResponse;
