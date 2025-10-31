@@ -55,7 +55,7 @@ public class MemberController {
     public ResponseEntity<BaseApiResponse> deleteMemberById(
             @PathVariable Long id
     ) {
-        memberService.deleteId(id);
+        memberService.deleteById(id);
 
         return ResponseEntity.ok(BaseApiResponse.of(SUCCESS_DELETED_MEMBERS));
     }

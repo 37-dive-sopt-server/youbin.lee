@@ -70,7 +70,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void deleteId(Long memberId) {
+    public void deleteById(Long memberId) {
         Member member = findByIdOrThrow(memberId);
         memberRepository.deleteById(member.getId());
     }

@@ -12,5 +12,5 @@ public interface MemberService {
 
     MembersGetResponse findAllMembers();
 
-    void deleteId(Long memberId);
+    void deleteById(Long memberId);
 }
