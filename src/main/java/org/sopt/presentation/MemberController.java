@@ -1,4 +1,4 @@
-package org.sopt.ui;
+package org.sopt.presentation;
 
 import org.sopt.application.MemberService;
 import org.sopt.application.dto.request.MemberCreateRequest;
