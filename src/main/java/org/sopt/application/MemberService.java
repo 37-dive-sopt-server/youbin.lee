@@ -5,9 +5,9 @@ import org.sopt.application.dto.*;
 public interface MemberService {
     MemberCreateResponse join(MemberCreateRequest request);
 
-    MemberFindResponseDto findById(Long memberId);
+    MemberFindResponse findById(Long memberId);
 
-    MembersGetResponseDto findAllMembers();
+    MembersGetResponse findAllMembers();
 
     void deleteId(Long memberId);
 }

@@ -31,17 +31,17 @@ public class MemberController {
     }
 
     @GetMapping("/members/{id}")
-    public ResponseEntity<SuccessResponse<MemberFindResponseDto>> findMember(
+    public ResponseEntity<SuccessResponse<MemberFindResponse>> findMember(
             @PathVariable Long id
     ) {
-        MemberFindResponseDto response = memberService.findById(id);
+        MemberFindResponse response = memberService.findById(id);
 
         return ResponseEntity.ok(SuccessResponse.of(SUCCESS_FIND_MEMBER, response));
     }
 
     @GetMapping("/members")
-    public ResponseEntity<SuccessResponse<MembersGetResponseDto>> getAllMembers() {
-        MembersGetResponseDto response = memberService.findAllMembers();
+    public ResponseEntity<SuccessResponse<MembersGetResponse>> getAllMembers() {
+        MembersGetResponse response = memberService.findAllMembers();
 
         return ResponseEntity.ok(SuccessResponse.of(SUCCESS_GET_MEMBERS, response));
     }

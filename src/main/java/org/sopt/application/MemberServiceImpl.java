@@ -49,21 +49,21 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public MemberFindResponseDto findById(Long memberId) {
+    public MemberFindResponse findById(Long memberId) {
         Member member = findByIdOrThrow(memberId);
 
-        return MemberFindResponseDto.from(member.getId());
+        return MemberFindResponse.from(member.getId());
     }
 
     @Override
-    public MembersGetResponseDto findAllMembers() {
+    public MembersGetResponse findAllMembers() {
         List<Member> members = memberRepository.findAll();
 
         List<Long> ids = members.stream()
                 .map(Member::getId)
                 .toList();
 
-        return MembersGetResponseDto.from(ids);
+        return MembersGetResponse.from(ids);
     }
 
     @Override
