@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import static org.sopt.common.SuccessMessage.*;
 
 @RestController
+@RequestMapping("/members")
 public class MemberController {
 
     private final MemberService memberService;
@@ -22,7 +23,7 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @PostMapping("/members")
+    @PostMapping
     public ResponseEntity<BaseApiResponse<MemberCreateResponse>> createMember(
             @RequestBody MemberCreateRequest request
     ) {
@@ -34,7 +35,7 @@ public class MemberController {
         return ResponseEntity.ok(BaseApiResponse.of(SUCCESS_CREATE_MEMBER, response));
     }
 
-    @GetMapping("/members/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<BaseApiResponse<MemberFindResponse>> findMember(
             @PathVariable Long id
     ) {
@@ -43,14 +44,14 @@ public class MemberController {
         return ResponseEntity.ok(BaseApiResponse.of(SUCCESS_FIND_MEMBER, response));
     }
 
-    @GetMapping("/members")
+    @GetMapping
     public ResponseEntity<BaseApiResponse<MembersGetResponse>> getAllMembers() {
         MembersGetResponse response = memberService.findAllMembers();
 
         return ResponseEntity.ok(BaseApiResponse.of(SUCCESS_GET_MEMBERS, response));
     }
 
-    @DeleteMapping("/members/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<BaseApiResponse> deleteMemberById(
             @PathVariable Long id
     ) {
