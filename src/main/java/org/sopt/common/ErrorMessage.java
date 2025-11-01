@@ -1,4 +1,4 @@
-package org.sopt.common.execption.enums;
+package org.sopt.common;
 
 public enum ErrorMessage {
 
