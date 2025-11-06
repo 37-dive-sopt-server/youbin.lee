@@ -1,12 +1,15 @@
 package org.sopt.domain.article;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.sopt.domain.member.Member;
 
 import java.time.LocalDate;
 
 @Entity(name = "article")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class Article {
 
@@ -43,7 +46,4 @@ public class Article {
         this.tag = tag;
     }
 
-    public Article() {
-
-    }
 }
