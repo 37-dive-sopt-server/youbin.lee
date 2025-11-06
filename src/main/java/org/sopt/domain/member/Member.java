@@ -14,16 +14,20 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToMany(mappedBy = "member")
+    private List<Article> articles = new ArrayList<>();
+
     @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     private LocalDate birthDate;
+
+    @Column(nullable = false)
     private String email;
+
     @Enumerated(EnumType.STRING)
     private Gender gender;
-
-    @OneToMany(mappedBy = "member")
-    private List<Article> articles = new ArrayList<>();
 
     public Member() {
     }
