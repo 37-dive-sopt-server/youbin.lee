@@ -1,4 +1,4 @@
-package org.sopt.application.dto.response;
+package org.sopt.service.member.dto.response;
 
 public record MemberCreateResponse(
         Long id
