@@ -26,6 +26,8 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public void create(ArticleCreateRequest request) {
+        validateTitle(request.title());
+
         Member member = memberRepository.findById(request.memberId())
                 .orElseThrow(() -> new CustomException(ErrorMessage.MEMBER_NOT_FOUND));
 
@@ -52,6 +54,10 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.findAll().stream()
                 .map(ArticleGetResponse::from)
                 .toList();
+    }
+
+    private void validateTitle(String title) {
+        if (articleRepository.existsByTitle(title)) throw new CustomException(ErrorMessage.ARTICLE_TITLE_DUPLICATE);
     }
 
 }
