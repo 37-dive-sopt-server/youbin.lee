@@ -31,4 +31,8 @@ dependencies {
 
     // mysql
     runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // lombok
+    implementation 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
 }
