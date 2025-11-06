@@ -1,9 +1,7 @@
 package org.sopt.domain.member;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.sopt.domain.article.Article;
 
 import java.time.LocalDate;
@@ -12,6 +10,8 @@ import java.util.List;
 
 @Entity(name = "member")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 @Getter
 public class Member {
 
@@ -33,17 +33,5 @@ public class Member {
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
-
-    public Member(
-            String name,
-            LocalDate birthDate,
-            String email,
-            Gender gender
-    ) {
-        this.name = name;
-        this.birthDate = birthDate;
-        this.email = email;
-        this.gender = gender;
-    }
 
 }

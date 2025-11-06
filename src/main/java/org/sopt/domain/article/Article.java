@@ -1,15 +1,15 @@
 package org.sopt.domain.article;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.sopt.domain.member.Member;
 
 import java.time.LocalDate;
 
 @Entity(name = "article")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 @Getter
 public class Article {
 
@@ -33,17 +33,5 @@ public class Article {
 
     @Column(nullable = false)
     private String content;
-
-    public Article(
-            Member member,
-            String title,
-            String content,
-            Tag tag
-    ) {
-        this.member = member;
-        this.title = title;
-        this.content = content;
-        this.tag = tag;
-    }
 
 }

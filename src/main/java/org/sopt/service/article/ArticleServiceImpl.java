@@ -31,12 +31,12 @@ public class ArticleServiceImpl implements ArticleService {
         Member member = memberRepository.findById(request.memberId())
                 .orElseThrow(() -> new CustomException(ErrorMessage.MEMBER_NOT_FOUND));
 
-        Article article = new Article(
-                member,
-                request.title(),
-                request.content(),
-                Tag.valueOf(request.tag())
-        );
+        Article article = Article.builder()
+                .member(member)
+                .title(request.title())
+                .content(request.content())
+                .tag(Tag.valueOf(request.tag()))
+                .build();
 
         articleRepository.save(article);
     }

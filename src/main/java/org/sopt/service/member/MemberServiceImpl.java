@@ -28,12 +28,12 @@ public class MemberServiceImpl implements MemberService {
         validateDuplicateEmail(request.email());
         validateMemberAge(request.birthDate());
 
-        Member member = new Member(
-                request.name(),
-                request.birthDate(),
-                request.email(),
-                Gender.from(request.gender())
-        );
+        Member member = Member.builder()
+                .name(request.name())
+                .birthDate(request.birthDate())
+                .email(request.email())
+                .gender(Gender.from(request.gender()))
+                .build();
 
         memberRepository.save(member);
 
