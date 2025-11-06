@@ -1,6 +1,7 @@
 package org.sopt.domain.member;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import org.sopt.domain.article.Article;
 
 import java.time.LocalDate;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "member")
+@Getter
 public class Member {
 
     @Id
@@ -44,23 +46,4 @@ public class Member {
         this.gender = gender;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
 }

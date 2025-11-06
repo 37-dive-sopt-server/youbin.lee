@@ -1,11 +1,13 @@
 package org.sopt.domain.article;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import org.sopt.domain.member.Member;
 
 import java.time.LocalDate;
 
 @Entity(name = "article")
+@Getter
 public class Article {
 
     @Id
@@ -41,27 +43,7 @@ public class Article {
         this.tag = tag;
     }
 
-    public Long getId() {
-        return id;
-    }
+    public Article() {
 
-    public Member getMember() {
-        return member;
-    }
-
-    public Tag getTag() {
-        return tag;
-    }
-
-    public LocalDate getCreateAt() {
-        return createAt;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getContent() {
-        return content;
     }
 }
