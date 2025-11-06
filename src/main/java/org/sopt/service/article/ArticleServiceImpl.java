@@ -31,7 +31,7 @@ public class ArticleServiceImpl implements ArticleService {
         Member member = memberRepository.findById(request.memberId())
                 .orElseThrow(() -> new CustomException(ErrorMessage.MEMBER_NOT_FOUND));
 
-        Article article = Article.create(
+        Article article = new Article(
                 member,
                 request.title(),
                 request.content(),

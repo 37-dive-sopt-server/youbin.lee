@@ -29,15 +29,16 @@ public class Article {
     @Column(nullable = false)
     private String content;
 
-    public static Article create(Member member, String title, String content, Tag tag) {
-      Article article = new Article();
-
-      article.member = member;
-      article.title = title;
-      article.content = content;
-      article.tag = tag;
-
-      return article;
+    public Article(
+            Member member,
+            String title,
+            String content,
+            Tag tag
+    ) {
+        this.member = member;
+        this.title = title;
+        this.content = content;
+        this.tag = tag;
     }
 
     public Long getId() {
