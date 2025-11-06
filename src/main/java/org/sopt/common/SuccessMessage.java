@@ -4,9 +4,9 @@ public enum SuccessMessage {
 
     // 회원
     SUCCESS_CREATE_MEMBER(200, "회원 생성에 성공했습니다"),
-    SUCCESS_FIND_MEMBER(200, "회원 조회에 성공했습니다"),
+    SUCCESS_GET_MEMBER(200, "회원 조회에 성공했습니다"),
+    SUCCESS_GET_MEMBER_LIST(200,"전체 회원 조회에 성공했습니다"),
     SUCCESS_DELETED_MEMBERS(200, "회원 삭제에 성공했습니다"),
-
     // 아티클
     SUCCESS_CREATE_ARTICLE(200, "아티클 생성에 성공했습니다"),
     SUCCESS_GET_ARTICLE(200, "단일 아티클 조회에 성공했습니다"),
