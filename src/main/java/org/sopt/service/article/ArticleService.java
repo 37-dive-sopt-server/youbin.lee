@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface ArticleService {
     void create(ArticleCreateRequest request);
+
     ArticleGetResponse getArticle(Long id);
+
     List<ArticleGetResponse> getArticleList();
 }
