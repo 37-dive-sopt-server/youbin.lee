@@ -20,6 +20,7 @@ public class Member {
     private Long id;
 
     @OneToMany(mappedBy = "member")
+    @Builder.Default
     private List<Article> articles = new ArrayList<>();
 
     @Column(nullable = false)
