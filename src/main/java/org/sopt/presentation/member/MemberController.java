@@ -1,5 +1,6 @@
 package org.sopt.presentation.member;
 
+import lombok.RequiredArgsConstructor;
 import org.sopt.common.BaseApiResponse;
 import org.sopt.common.SuccessMessage;
 import org.sopt.common.validator.EmailValidator;
@@ -14,14 +15,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/members")
 public class MemberController {
 
     private final MemberService memberService;
-
-    public MemberController(MemberService memberService) {
-        this.memberService = memberService;
-    }
 
     @PostMapping
     public ResponseEntity<BaseApiResponse<MemberCreateResponse>> createMember(

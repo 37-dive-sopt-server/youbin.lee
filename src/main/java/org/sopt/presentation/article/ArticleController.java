@@ -1,5 +1,6 @@
 package org.sopt.presentation.article;
 
+import lombok.RequiredArgsConstructor;
 import org.sopt.common.BaseApiResponse;
 import org.sopt.common.SuccessMessage;
 import org.sopt.service.article.ArticleService;
@@ -11,13 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/article")
 public class ArticleController {
     private final ArticleService articleService;
-
-    public ArticleController(ArticleService articleService) {
-        this.articleService = articleService;
-    }
 
     @PostMapping
     public ResponseEntity<BaseApiResponse> createArticle(

@@ -1,5 +1,6 @@
 package org.sopt.service.article;
 
+import lombok.RequiredArgsConstructor;
 import org.sopt.common.ErrorMessage;
 import org.sopt.common.execption.CustomException;
 import org.sopt.domain.article.Article;
@@ -14,15 +15,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ArticleServiceImpl implements ArticleService {
 
-    private ArticleRepository articleRepository;
-    private MemberRepository memberRepository;
-
-    public ArticleServiceImpl(ArticleRepository articleRepository, MemberRepository memberRepository) {
-        this.articleRepository = articleRepository;
-        this.memberRepository = memberRepository;
-    }
+    private final ArticleRepository articleRepository;
+    private final MemberRepository memberRepository;
 
     @Override
     public void create(ArticleCreateRequest request) {
