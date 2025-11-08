@@ -1,4 +1,4 @@
-package org.sopt.domain;
+package org.sopt.domain.member;
 
 import org.sopt.common.execption.CustomException;
 import org.sopt.common.ErrorMessage;
