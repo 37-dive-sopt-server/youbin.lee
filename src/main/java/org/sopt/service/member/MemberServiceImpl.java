@@ -35,14 +35,14 @@ public class MemberServiceImpl implements MemberService {
 
         memberRepository.save(member);
 
-        return MemberCreateResponse.from(member.getId());
+        return new MemberCreateResponse(member.getId());
     }
 
     @Override
     public MemberGetResponse findById(Long memberId) {
         Member member = findByIdOrThrow(memberId);
 
-        return MemberGetResponse.from(member.getId());
+        return new MemberGetResponse(member.getId());
     }
 
     @Override
@@ -50,7 +50,7 @@ public class MemberServiceImpl implements MemberService {
         List<Member> members = memberRepository.findAll();
 
         return members.stream()
-                .map(member -> MemberGetResponse.from(member.getId()))
+                .map(member -> new MemberGetResponse(member.getId()))
                 .toList();
     }
 
