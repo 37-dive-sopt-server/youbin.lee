@@ -1,10 +1,9 @@
 package org.sopt.presentation.member;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.sopt.global.dto.BaseApiResponse;
 import org.sopt.global.message.SuccessMessage;
-import org.sopt.domain.member.validator.EmailValidator;
-import org.sopt.domain.member.validator.NameValidator;
 import org.sopt.service.member.MemberService;
 import org.sopt.service.member.dto.request.MemberCreateRequest;
 import org.sopt.service.member.dto.response.MemberCreateResponse;
@@ -23,11 +22,8 @@ public class MemberController {
 
     @PostMapping
     public ResponseEntity<BaseApiResponse<MemberCreateResponse>> createMember(
-            @RequestBody MemberCreateRequest request
+            @Valid @RequestBody MemberCreateRequest request
     ) {
-        NameValidator.validateName(request.name());
-        EmailValidator.validateFormat(request.email());
-
         MemberCreateResponse response = memberService.join(request);
 
         return ResponseEntity.ok(BaseApiResponse.of(SuccessMessage.SUCCESS_CREATE_MEMBER, response));
