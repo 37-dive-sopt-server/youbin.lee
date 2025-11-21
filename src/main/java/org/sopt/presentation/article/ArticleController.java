@@ -23,7 +23,7 @@ public class ArticleController {
     ) {
         articleService.create(request);
 
-        return ResponseEntity.ok(BaseApiResponse.of(SuccessMessage.SUCCESS_CREATE_MEMBER));
+        return ResponseEntity.ok(BaseApiResponse.of(SuccessMessage.SUCCESS_CREATE_ARTICLE));
     }
 
     @GetMapping("/{id}")
