@@ -9,6 +9,7 @@ import org.sopt.service.member.dto.request.MemberCreateRequest;
 import org.sopt.service.member.dto.response.MemberCreateResponse;
 import org.sopt.service.member.dto.response.MemberGetResponse;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -21,6 +22,7 @@ public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
 
     @Override
+    @Transactional
     public MemberCreateResponse join(MemberCreateRequest request) {
         validateDuplicateEmail(request.email());
         validateMemberAge(request.birthDate());
@@ -38,6 +40,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public MemberGetResponse findById(Long memberId) {
         Member member = findByIdOrThrow(memberId);
 
@@ -45,6 +48,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<MemberGetResponse> findAllMembers() {
         List<Member> members = memberRepository.findAll();
 
@@ -54,6 +58,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    @Transactional
     public void deleteById(Long memberId) {
         Member member = findByIdOrThrow(memberId);
         memberRepository.deleteById(member.getId());
