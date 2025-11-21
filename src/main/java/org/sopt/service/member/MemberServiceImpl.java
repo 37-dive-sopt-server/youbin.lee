@@ -1,15 +1,15 @@
 package org.sopt.service.member;
 
 import lombok.RequiredArgsConstructor;
-import org.sopt.common.ErrorMessage;
-import org.sopt.common.execption.CustomException;
-import org.sopt.domain.member.Gender;
 import org.sopt.domain.member.Member;
+import org.sopt.global.execption.CustomException;
+import org.sopt.global.message.ErrorMessage;
 import org.sopt.repository.member.MemberRepository;
 import org.sopt.service.member.dto.request.MemberCreateRequest;
 import org.sopt.service.member.dto.response.MemberCreateResponse;
 import org.sopt.service.member.dto.response.MemberGetResponse;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -22,39 +22,43 @@ public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
 
     @Override
+    @Transactional
     public MemberCreateResponse join(MemberCreateRequest request) {
         validateDuplicateEmail(request.email());
         validateMemberAge(request.birthDate());
 
-        Member member = Member.builder()
-                .name(request.name())
-                .birthDate(request.birthDate())
-                .email(request.email())
-                .gender(Gender.from(request.gender()))
-                .build();
+        Member member = Member.create(
+                request.name(),
+                request.birthDate(),
+                request.email(),
+                request.gender()
+        );
 
         memberRepository.save(member);
 
-        return MemberCreateResponse.from(member.getId());
+        return new MemberCreateResponse(member.getId());
     }
 
     @Override
+    @Transactional(readOnly = true)
     public MemberGetResponse findById(Long memberId) {
         Member member = findByIdOrThrow(memberId);
 
-        return MemberGetResponse.from(member.getId());
+        return new MemberGetResponse(member.getId());
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<MemberGetResponse> findAllMembers() {
         List<Member> members = memberRepository.findAll();
 
         return members.stream()
-                .map(member -> MemberGetResponse.from(member.getId()))
+                .map(member -> new MemberGetResponse(member.getId()))
                 .toList();
     }
 
     @Override
+    @Transactional
     public void deleteById(Long memberId) {
         Member member = findByIdOrThrow(memberId);
         memberRepository.deleteById(member.getId());

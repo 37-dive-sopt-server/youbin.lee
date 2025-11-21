@@ -1,6 +1,6 @@
-package org.sopt.common.execption;
+package org.sopt.global.execption;
 
-import org.sopt.common.ErrorMessage;
+import org.sopt.global.message.ErrorMessage;
 
 public class CustomException extends RuntimeException {
 
