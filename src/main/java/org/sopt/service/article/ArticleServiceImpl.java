@@ -10,6 +10,7 @@ import org.sopt.repository.member.MemberRepository;
 import org.sopt.service.article.dto.request.ArticleCreateRequest;
 import org.sopt.service.article.dto.response.ArticleGetResponse;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class ArticleServiceImpl implements ArticleService {
     private final MemberRepository memberRepository;
 
     @Override
+    @Transactional
     public void create(ArticleCreateRequest request) {
         Member member = memberRepository.findById(request.memberId())
                 .orElseThrow(() -> new CustomException(ErrorMessage.MEMBER_NOT_FOUND));
@@ -36,6 +38,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ArticleGetResponse getArticle(Long id) {
         Article article = articleRepository.findById(id)
                 .orElseThrow(() -> new CustomException(ErrorMessage.ARTICLE_NOT_FOUND));
@@ -44,6 +47,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<ArticleGetResponse> getArticleList() {
         return articleRepository.findAll().stream()
                 .map(ArticleGetResponse::from)
