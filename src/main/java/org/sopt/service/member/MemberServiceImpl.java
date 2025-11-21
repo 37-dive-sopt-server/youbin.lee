@@ -1,7 +1,7 @@
 package org.sopt.service.member;
 
 import lombok.RequiredArgsConstructor;
-import org.sopt.common.ErrorMessage;
+import org.sopt.common.message.ErrorMessage;
 import org.sopt.common.execption.CustomException;
 import org.sopt.domain.member.Gender;
 import org.sopt.domain.member.Member;

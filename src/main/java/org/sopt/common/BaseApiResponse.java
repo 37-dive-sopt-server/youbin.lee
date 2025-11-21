@@ -1,5 +1,7 @@
 package org.sopt.common;
 
+import org.sopt.common.message.SuccessMessage;
+
 public record BaseApiResponse<T>(
         int status,
         String message,

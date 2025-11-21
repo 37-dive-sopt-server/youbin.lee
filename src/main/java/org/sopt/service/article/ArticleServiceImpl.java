@@ -1,7 +1,7 @@
 package org.sopt.service.article;
 
 import lombok.RequiredArgsConstructor;
-import org.sopt.common.ErrorMessage;
+import org.sopt.common.message.ErrorMessage;
 import org.sopt.common.execption.CustomException;
 import org.sopt.domain.article.Article;
 import org.sopt.domain.article.Tag;
