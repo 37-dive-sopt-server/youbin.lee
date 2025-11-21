@@ -1,4 +1,4 @@
-package org.sopt.common.message;
+package org.sopt.global.message;
 
 public enum SuccessMessage {
 

@@ -1,8 +1,8 @@
 package org.sopt.presentation.member;
 
 import lombok.RequiredArgsConstructor;
-import org.sopt.common.BaseApiResponse;
-import org.sopt.common.message.SuccessMessage;
+import org.sopt.global.dto.BaseApiResponse;
+import org.sopt.global.message.SuccessMessage;
 import org.sopt.domain.member.validator.EmailValidator;
 import org.sopt.domain.member.validator.NameValidator;
 import org.sopt.service.member.MemberService;

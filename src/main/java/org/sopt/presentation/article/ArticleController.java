@@ -1,8 +1,8 @@
 package org.sopt.presentation.article;
 
 import lombok.RequiredArgsConstructor;
-import org.sopt.common.BaseApiResponse;
-import org.sopt.common.message.SuccessMessage;
+import org.sopt.global.dto.BaseApiResponse;
+import org.sopt.global.message.SuccessMessage;
 import org.sopt.service.article.ArticleService;
 import org.sopt.service.article.dto.request.ArticleCreateRequest;
 import org.sopt.service.article.dto.response.ArticleGetResponse;

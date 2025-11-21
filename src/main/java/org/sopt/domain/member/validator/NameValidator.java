@@ -1,7 +1,7 @@
 package org.sopt.domain.member.validator;
 
-import org.sopt.common.execption.CustomException;
-import org.sopt.common.message.ErrorMessage;
+import org.sopt.global.execption.CustomException;
+import org.sopt.global.message.ErrorMessage;
 
 public class NameValidator {
 
