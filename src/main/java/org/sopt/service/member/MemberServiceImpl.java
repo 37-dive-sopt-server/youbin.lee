@@ -1,10 +1,9 @@
 package org.sopt.service.member;
 
 import lombok.RequiredArgsConstructor;
-import org.sopt.global.message.ErrorMessage;
-import org.sopt.global.execption.CustomException;
-import org.sopt.domain.member.Gender;
 import org.sopt.domain.member.Member;
+import org.sopt.global.execption.CustomException;
+import org.sopt.global.message.ErrorMessage;
 import org.sopt.repository.member.MemberRepository;
 import org.sopt.service.member.dto.request.MemberCreateRequest;
 import org.sopt.service.member.dto.response.MemberCreateResponse;
@@ -26,12 +25,12 @@ public class MemberServiceImpl implements MemberService {
         validateDuplicateEmail(request.email());
         validateMemberAge(request.birthDate());
 
-        Member member = Member.builder()
-                .name(request.name())
-                .birthDate(request.birthDate())
-                .email(request.email())
-                .gender(Gender.from(request.gender()))
-                .build();
+        Member member = Member.create(
+                request.name(),
+                request.birthDate(),
+                request.email(),
+                request.gender()
+        );
 
         memberRepository.save(member);
 

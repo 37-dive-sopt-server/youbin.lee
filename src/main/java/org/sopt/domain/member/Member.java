@@ -35,4 +35,20 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    @Builder
+    private Member(String name, LocalDate birthDate, String email, Gender gender) {
+        this.name = name;
+        this.birthDate = birthDate;
+        this.email = email;
+        this.gender = gender;
+    }
+
+    public static Member create(String name, LocalDate birthDate, String email, String gender) {
+        return Member.builder()
+                .name(name)
+                .birthDate(birthDate)
+                .email(email)
+                .gender(Gender.from(gender))
+                .build();
+    }
 }
