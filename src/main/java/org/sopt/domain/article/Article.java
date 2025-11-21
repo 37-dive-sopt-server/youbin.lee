@@ -38,4 +38,20 @@ public class Article {
     @Column(nullable = false)
     private String content;
 
+    @Builder
+    private Article(Member member, String title, String content, Tag tag) {
+        this.member = member;
+        this.title = title;
+        this.content = content;
+        this.tag = tag;
+    }
+
+    public static Article create(Member member, String title, String content, String tag) {
+        return Article.builder()
+                .member(member)
+                .title(title)
+                .content(content)
+                .tag(Tag.valueOf(tag))
+                .build();
+    }
 }

@@ -1,11 +1,10 @@
 package org.sopt.service.article;
 
 import lombok.RequiredArgsConstructor;
-import org.sopt.global.message.ErrorMessage;
-import org.sopt.global.execption.CustomException;
 import org.sopt.domain.article.Article;
-import org.sopt.domain.article.Tag;
 import org.sopt.domain.member.Member;
+import org.sopt.global.execption.CustomException;
+import org.sopt.global.message.ErrorMessage;
 import org.sopt.repository.article.ArticleRepository;
 import org.sopt.repository.member.MemberRepository;
 import org.sopt.service.article.dto.request.ArticleCreateRequest;
@@ -28,12 +27,12 @@ public class ArticleServiceImpl implements ArticleService {
         Member member = memberRepository.findById(request.memberId())
                 .orElseThrow(() -> new CustomException(ErrorMessage.MEMBER_NOT_FOUND));
 
-        Article article = Article.builder()
-                .member(member)
-                .title(request.title())
-                .content(request.content())
-                .tag(Tag.valueOf(request.tag()))
-                .build();
+        Article article = Article.create(
+                member,
+                request.title(),
+                request.content(),
+                request.tag()
+        );
 
         articleRepository.save(article);
     }
