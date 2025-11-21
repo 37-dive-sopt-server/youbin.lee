@@ -32,7 +32,7 @@ public class Article {
     @Column(nullable = false)
     private LocalDate createAt;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String title;
 
     @Column(nullable = false)
