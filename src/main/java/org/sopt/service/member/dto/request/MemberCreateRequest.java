@@ -8,6 +8,8 @@ import java.time.LocalDate;
 public record MemberCreateRequest(
         @NotBlank
         String name,
+        @NotBlank
+        String password,
         LocalDate birthDate,
         @NotBlank
         @Email

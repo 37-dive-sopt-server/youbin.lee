@@ -29,6 +29,7 @@ public class MemberServiceImpl implements MemberService {
 
         Member member = Member.create(
                 request.name(),
+                request.password(),
                 request.birthDate(),
                 request.email(),
                 request.gender()

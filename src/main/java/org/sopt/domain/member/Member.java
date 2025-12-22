@@ -27,6 +27,9 @@ public class Member {
     private String name;
 
     @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
     private LocalDate birthDate;
 
     @Column(nullable = false)
@@ -36,16 +39,18 @@ public class Member {
     private Gender gender;
 
     @Builder
-    private Member(String name, LocalDate birthDate, String email, Gender gender) {
+    private Member(String name, String password, LocalDate birthDate, String email, Gender gender) {
         this.name = name;
+        this.password = password;
         this.birthDate = birthDate;
         this.email = email;
         this.gender = gender;
     }
 
-    public static Member create(String name, LocalDate birthDate, String email, String gender) {
+    public static Member create(String name, String password, LocalDate birthDate, String email, String gender) {
         return Member.builder()
                 .name(name)
+                .password(password)
                 .birthDate(birthDate)
                 .email(email)
                 .gender(Gender.from(gender))
