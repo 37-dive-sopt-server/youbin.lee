@@ -9,11 +9,16 @@ import org.sopt.global.message.ErrorMessage;
 import org.sopt.repository.article.ArticleRepository;
 import org.sopt.repository.comment.CommentRepository;
 import org.sopt.repository.member.MemberRepository;
-import org.sopt.service.comment.dto.CommentCreateRequest;
+import org.sopt.service.comment.dto.request.CommentCreateRequest;
+import org.sopt.service.comment.dto.response.CommentGetResponse;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class CommentServiceImpl implements CommentService {
 
     private final ArticleRepository articleRepository;
@@ -35,5 +40,17 @@ public class CommentServiceImpl implements CommentService {
         );
 
         commentRepository.save(comment);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<CommentGetResponse> getCommentList(Long articleId) {
+        articleRepository.findById(articleId)
+                .orElseThrow(() -> new CustomException(ErrorMessage.ARTICLE_NOT_FOUND));
+
+        return commentRepository.findAllByArticleId(articleId)
+                .stream()
+                .map(CommentGetResponse::toResponse)
+                .toList();
     }
 }
