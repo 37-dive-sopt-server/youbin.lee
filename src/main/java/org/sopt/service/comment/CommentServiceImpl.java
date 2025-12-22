@@ -32,7 +32,6 @@ public class CommentServiceImpl implements CommentService {
                 request.content(),
                 article,
                 writer
-
         );
 
         commentRepository.save(comment);
