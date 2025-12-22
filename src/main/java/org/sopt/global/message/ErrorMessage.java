@@ -14,6 +14,9 @@ public enum ErrorMessage {
     ARTICLE_NOT_FOUND("아티클을 찾을 수 없습니다"),
     ARTICLE_TITLE_DUPLICATE("아티클 제목은 중복이 불가능합니다");
 
+    // 댓글
+
+
     private final String message;
 
     ErrorMessage(String message) {
