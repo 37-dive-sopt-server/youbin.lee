@@ -14,7 +14,8 @@ public enum SuccessMessage {
     SUCCESS_GET_ARTICLE_LIST(200, "전체 아티클 조회에 성공했습니다"),
 
     // 댓글
-    SUCCESS_CREATE_COMMENT(200, "댓글 생성에 성공했습니다");
+    SUCCESS_CREATE_COMMENT(200, "댓글 생성에 성공했습니다"),
+    SUCCESS_GET_COMMENT_LIST(200, "전체 댓글 조회에 성공했습니다");
 
     private final int status;
     private final String message;
