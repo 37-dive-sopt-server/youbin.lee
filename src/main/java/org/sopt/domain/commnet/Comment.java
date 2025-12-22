@@ -36,7 +36,7 @@ public class Comment {
         this.writer = writer;
     }
 
-    public static Comment of(String content, Article article, Member writer) {
+    public static Comment create(String content, Article article, Member writer) {
         return Comment.builder()
                 .content(content)
                 .article(article)
