@@ -1,4 +1,4 @@
-package org.sopt.service.comment.dto;
+package org.sopt.service.comment.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
