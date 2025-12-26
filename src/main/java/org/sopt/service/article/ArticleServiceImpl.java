@@ -58,9 +58,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<ArticleListGetResponse> getArticleList() {
-        return articleRepository.findAll().stream()
-                .map(ArticleListGetResponse::from)
-                .toList();
+    public ArticleListGetResponse getArticleList() {
+        List<Article> articles = articleRepository.findAll();
+
+        return ArticleListGetResponse.from(articles);
     }
 }
