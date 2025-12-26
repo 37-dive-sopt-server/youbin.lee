@@ -70,4 +70,20 @@ public class CommentServiceImpl implements CommentService {
 
         comment.updateContent(request.content());
     }
+
+    @Override
+    public void delete(Long articleId, Long commentId, Long memberId) {
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new CustomException(ErrorMessage.COMMENT_NOT_EXIST));
+
+        if (!comment.getArticle().getId().equals(articleId)) {
+            throw new CustomException(ErrorMessage.COMMENT_NOT_IN_ARTICLE);
+        }
+
+        if (!comment.getMember().getId().equals(memberId)) {
+            throw new CustomException(ErrorMessage.COMMENT_DELETE_FORBIDDEN);
+        }
+
+        commentRepository.delete(comment);
+    }
 }

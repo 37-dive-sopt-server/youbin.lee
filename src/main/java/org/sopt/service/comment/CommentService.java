@@ -12,4 +12,6 @@ public interface CommentService {
     List<CommentGetResponse> getCommentList(Long articleId);
 
     void update(Long articleId, Long commentId, Long memberId, CommentUpdateRequest request);
+
+    void delete(Long articleId, Long commentId, Long memberId);
 }
