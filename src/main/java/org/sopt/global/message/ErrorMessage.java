@@ -17,7 +17,8 @@ public enum ErrorMessage {
     // 댓글
     COMMENT_NOT_EXIST("댓글이 존재하지 않습니다"),
     COMMENT_NOT_IN_ARTICLE("해당 게시글의 댓글이 아닙니다"),
-    COMMENT_UPDATE_FORBIDDEN("댓글 수정 권한이 없습니다");
+    COMMENT_UPDATE_FORBIDDEN("댓글 수정 권한이 없습니다"),
+    COMMENT_DELETE_FORBIDDEN("댓글 삭제 권한이 없습니다");
 
     private final String message;
 
