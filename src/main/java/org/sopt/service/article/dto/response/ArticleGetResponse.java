@@ -1,25 +1,29 @@
 package org.sopt.service.article.dto.response;
 
 import org.sopt.domain.article.Article;
+import org.sopt.service.comment.dto.response.CommentGetResponse;
 
-import java.time.LocalDate;
+import java.util.List;
 
 public record ArticleGetResponse(
         Long id,
-        String memberName,
         String title,
         String content,
         String tag,
-        LocalDate createAt
+        Long memberId,
+        List<CommentGetResponse> comments
 ) {
-    public static ArticleGetResponse from(Article article) {
+    public static ArticleGetResponse from(
+            Article article,
+            List<CommentGetResponse> comments
+    ) {
         return new ArticleGetResponse(
                 article.getId(),
-                article.getMember().getName(),
                 article.getTitle(),
                 article.getContent(),
                 article.getTag().toString(),
-                article.getCreateAt()
+                article.getMember().getId(),
+                comments
         );
     }
 }

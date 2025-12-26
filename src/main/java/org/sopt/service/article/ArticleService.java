@@ -2,6 +2,7 @@ package org.sopt.service.article;
 
 import org.sopt.service.article.dto.request.ArticleCreateRequest;
 import org.sopt.service.article.dto.response.ArticleGetResponse;
+import org.sopt.service.article.dto.response.ArticleListGetResponse;
 
 import java.util.List;
 
@@ -10,5 +11,5 @@ public interface ArticleService {
 
     ArticleGetResponse getArticle(Long id);
 
-    List<ArticleGetResponse> getArticleList();
+    List<ArticleListGetResponse> getArticleList();
 }
