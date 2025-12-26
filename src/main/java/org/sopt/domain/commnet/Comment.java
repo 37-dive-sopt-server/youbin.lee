@@ -27,20 +27,20 @@ public class Comment {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "member_id")
-    private Member writer;
+    private Member member;
 
     @Builder
-    private Comment(String content, Article article, Member writer) {
+    private Comment(String content, Article article, Member member) {
         this.content = content;
         this.article = article;
-        this.writer = writer;
+        this.member = member;
     }
 
-    public static Comment create(String content, Article article, Member writer) {
+    public static Comment create(String content, Article article, Member member) {
         return Comment.builder()
                 .content(content)
                 .article(article)
-                .writer(writer)
+                .member(member)
                 .build();
     }
 
