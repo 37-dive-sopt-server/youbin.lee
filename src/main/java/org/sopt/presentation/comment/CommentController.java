@@ -6,6 +6,7 @@ import org.sopt.global.dto.BaseApiResponse;
 import org.sopt.global.message.SuccessMessage;
 import org.sopt.service.comment.CommentService;
 import org.sopt.service.comment.dto.request.CommentCreateRequest;
+import org.sopt.service.comment.dto.request.CommentUpdateRequest;
 import org.sopt.service.comment.dto.response.CommentGetResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,5 +36,17 @@ public class CommentController {
         List<CommentGetResponse> response = commentService.getCommentList(articleId);
 
         return ResponseEntity.ok(BaseApiResponse.of(SuccessMessage.SUCCESS_GET_COMMENT_LIST, response));
+    }
+
+    @PatchMapping("/{commentId}")
+    public ResponseEntity<BaseApiResponse> update(
+            @PathVariable Long articleId,
+            @PathVariable Long commentId,
+            @RequestParam Long memberId,
+            @Valid @RequestBody CommentUpdateRequest request
+    ) {
+        commentService.update(articleId, commentId, memberId, request);
+
+        return ResponseEntity.ok(BaseApiResponse.of(SuccessMessage.SUCCESS_UPDATE_COMMENT));
     }
 }
