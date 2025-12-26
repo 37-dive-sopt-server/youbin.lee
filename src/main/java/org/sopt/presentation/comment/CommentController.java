@@ -39,7 +39,7 @@ public class CommentController {
     }
 
     @PatchMapping("/{commentId}")
-    public ResponseEntity<BaseApiResponse> update(
+    public ResponseEntity<BaseApiResponse> updateComment(
             @PathVariable Long articleId,
             @PathVariable Long commentId,
             @RequestParam Long memberId,
@@ -48,5 +48,16 @@ public class CommentController {
         commentService.update(articleId, commentId, memberId, request);
 
         return ResponseEntity.ok(BaseApiResponse.of(SuccessMessage.SUCCESS_UPDATE_COMMENT));
+    }
+
+    @DeleteMapping("/{commentId}")
+    public ResponseEntity<BaseApiResponse> deleteComment(
+            @PathVariable Long articleId,
+            @PathVariable Long commentId,
+            @RequestParam Long memberId
+    ) {
+        commentService.delete(articleId, commentId, memberId);
+
+        return ResponseEntity.ok(BaseApiResponse.of(SuccessMessage.SUCCESS_DELETED_COMMENT));
     }
 }
